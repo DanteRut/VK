@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Операция "Push to Offer" | VK MidSprint</title>
+    <style>
+        :root {
+            --bg-color: #19191a;
+            --card-bg: #222224;
+            --text-primary: #e1e3e6;
+            --text-secondary: #939393;
+            --vk-blue: #0077FF;
+            --vk-blue-hover: #0066cc;
+            --success: #4bb34b;
+            --border: #333335;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        h1 { font-size: 1.8rem; margin-bottom: 10px; color: var(--vk-blue); }
+        .subtitle { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
+
+        .progress-container {
+            background: #111;
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--vk-blue), #00c6ff);
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 10px;
+        }
+
+        .progress-text { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; }
+
+        .day-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+
+        .day-card:hover { transform: translateY(-2px); border-color: var(--vk-blue); }
+
+        .day-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .day-title .badge {
+            background: var(--vk-blue);
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .task-list { list-style: none; }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .task-item:last-child { border-bottom: none; }
+        .task-item:hover { opacity: 0.8; }
+
+        .task-item input[type="checkbox"] {
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--text-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.2s;
+        }
+
+        .task-item input[type="checkbox"]:checked {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+
+        .task-item input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .task-text { font-size: 0.95rem; }
+        .task-text a { color: var(--vk-blue); text-decoration: none; font-weight: 500; }
+        .task-text a:hover { text-decoration: underline; }
+        
+        .task-item input[type="checkbox"]:checked + .task-text {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+
+        .reset-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 30px;
+            transition: all 0.2s;
+        }
+
+        .reset-btn:hover { background: #333; color: var(--text-primary); }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .git-push { 
+            font-family: 'Courier New', monospace; 
+            color: var(--success); 
+            font-weight: bold; 
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🚀 Операция "Push to Offer"</h1>
+    <p class="subtitle">5-дневный Java-рейд в VK (MidSprint) • Данил Карякин</p>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <p class="progress-text" id="progressText">0% выполнено</p>
+</header>
+
+<main>
+    <!-- ДЕНЬ 1 -->
+    <div class="day-card">
+        <div class="day-title">День 1: Фундамент <span class="badge">Завершено ✅</span></div>
+        <ul class="task-list">
+            <li class="task-item"><input type="checkbox" id="d1t1"><span class="task-text"><a href="https://leetcode.com/problems/two-sum/" target="_blank">1. Two Sum</a> (HashMap)</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t2"><span class="task-text"><a href="https://leetcode.com/problems/valid-anagram/" target="_blank">242. Valid Anagram</a> (Массив частот)</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t3"><span class="task-text"><a href="https://leetcode.com/problems/3sum/" target="_blank">15. 3Sum</a> (Two Pointers + дедупликация)</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t4"><span class="task-text"><a href="https://leetcode.com/problems/valid-palindrome/" target="_blank">125. Valid Palindrome</a> (Edge cases, i < j)</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t5"><span class="task-text">Java Core: HashMap (treeify, resize) vs ConcurrentHashMap</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t6"><span class="task-text">JMM: volatile (видимость, happens-before), AtomicLong vs LongAdder</span></li>
+        </ul>
+    </div>
+
+    <!-- ДЕНЬ 2 -->
+    <div class="day-card">
+        <div class="day-title">День 2: Алгоритмы + Spring <span class="badge">В процессе 🔄</span></div>
+        <ul class="task-list">
+            <li class="task-item"><input type="checkbox" id="d2t1"><span class="task-text"><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank">53. Maximum Subarray</a> (Алгоритм Кадане)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t2"><span class="task-text"><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">206. Reverse Linked List</a> (С закрытыми глазами)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t3"><span class="task-text"><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">141. Linked List Cycle</a> (Черепаха и Заяц)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t4"><span class="task-text"><a href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank">424. Longest Repeating Char</a> (Sliding Window)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t5"><span class="task-text">Spring: @Transactional (прокси, self-invocation, Propagation)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t6"><span class="task-text">Spring: Жизненный цикл бина (от BeanDefinition до @PreDestroy)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t7"><span class="task-text">Java 21: Virtual Threads vs Platform Threads, pinning (ReentrantLock)</span></li>
+        </ul>
+    </div>
+
+    <!-- ДЕНЬ 3 -->
+    <div class="day-card">
+        <div class="day-title">День 3: БД + Kafka + Микросервисы <span class="badge">Ожидает ⏳</span></div>
+        <ul class="task-list">
+            <li class="task-item"><input type="checkbox" id="d3t1"><span class="task-text"><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">102. Binary Tree Level Order</a> (BFS через Queue)</span></li>
+            <li class="task-item"><input type="checkbox" id="d3t2"><span class="task-text"><a href="https://leetcode.com/problems/number-of-islands/" target="_blank">200. Number of Islands</a> (DFS/BFS на матрице)</span></li>
+            <li class="task-item"><input type="checkbox" id="d3t3"><span class="task-text"><a href="https://leetcode.com/problems/rotting-oranges/" target="_blank">994. Rotting Oranges</a> (Multi-source BFS)</span></li>
+            <li class="task-item"><input type="checkbox" id="d3t4"><span class="task-text">PostgreSQL: MVCC, WAL, B-Tree индексы, проблема N+1</span></li>
+            <li class="task-item"><input type="checkbox" id="d3t5"><span class="task-text">Kafka: At-least-once + идемпотентный консюмер (ON CONFLICT DO NOTHING)</span></li>
+            <li class="task-item"><input type="checkbox" id="d3t6"><span class="task-text">Микросервисы: Saga (оркестрация vs хореография)</span></li>
+        </ul>
+    </div>
+
+    <!-- ДЕНЬ 4 -->
+    <div class="day-card">
+        <div class="day-title">День 4: System Design + Тестирование <span class="badge">Ожидает ⏳</span></div>
+        <ul class="task-list">
+            <li class="task-item"><input type="checkbox" id="d4t1"><span class="task-text">Mock Contest: 3 случайные задачи за 45 минут с таймером</span></li>
+            <li class="task-item"><input type="checkbox" id="d4t2"><span class="task-text">Тестирование: Почему Testcontainers лучше H2? @Mock vs @Spy</span></li>
+            <li class="task-item"><input type="checkbox" id="d4t3"><span class="task-text">System Design: Rate Limiter (Token Bucket), Load Balancer алгоритмы</span></li>
+            <li class="task-item"><input type="checkbox" id="d4t4"><span class="task-text">Docker/K8s: Multi-stage build, Liveness vs Readiness probes</span></li>
+        </ul>
+    </div>
+
+    <!-- ДЕНЬ 5 -->
+    <div class="day-card">
+        <div class="day-title">День 5: Полировка и Soft Skills <span class="badge">Ожидает ⏳</span></div>
+        <ul class="task-list">
+            <li class="task-item"><input type="checkbox" id="d5t1"><span class="task-text">Перерешать задачи, которые не получились в Дни 1-4</span></li>
+            <li class="task-item"><input type="checkbox" id="d5t2"><span class="task-text">Подготовить STAR-рассказы: Smart Fridge, Concurrency Labs, Indexer</span></li>
+            <li class="task-item"><input type="checkbox" id="d5t3"><span class="task-text">Проверить камеру, микрофон, интернет, подготовить воду</span></li>
+        </ul>
+    </div>
+
+    <button class="reset-btn" onclick="resetProgress()">🗑 Сбросить весь прогресс</button>
+</main>
+
+<footer>
+    <p>Создано для подготовки к VK MidSprint • 2024</p>
+    <p class="git-push">$ git push origin offer</p>
+</footer>
+
+<script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const STORAGE_KEY = 'vk-midsprint-progress';
+
+    function updateProgress() {
+        const total = checkboxes.length;
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        const percent = Math.round((checked / total) * 100);
+        
+        progressBar.style.width = percent + '%';
+        progressText.textContent = `${percent}% выполнено (${checked} из ${total})`;
+        
+        if (percent === 100) {
+            progressText.textContent = '🎉 100% выполнено! Готов к офферу!';
+            progressText.style.color = '#4bb34b';
+        } else {
+            progressText.style.color = '#939393';
+        }
+    }
+
+    function saveState() {
+        const state = {};
+        checkboxes.forEach(cb => {
+            state[cb.id] = cb.checked;
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        updateProgress();
+    }
+
+    function loadState() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const state = JSON.parse(saved);
+            checkboxes.forEach(cb => {
+                if (state[cb.id]) {
+                    cb.checked = true;
+                }
+            });
+        }
+        updateProgress();
+    }
+
+    function resetProgress() {
+        if (confirm('Точно сбросить весь прогресс? Это действие нельзя отменить.')) {
+            localStorage.removeItem(STORAGE_KEY);
+            checkboxes.forEach(cb => cb.checked = false);
+            updateProgress();
+        }
+    }
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', saveState);
+    });
+
+    // Инициализация при загрузке
+    loadState();
+</script>
+
+</body>
+</html>
