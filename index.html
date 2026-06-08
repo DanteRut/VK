@@ -86,6 +86,9 @@
             font-weight: 600;
         }
 
+        .badge.done { background: var(--success); }
+        .badge.pending { background: #555; }
+
         .task-list { list-style: none; }
 
         .task-item {
@@ -186,47 +189,46 @@
 <main>
     <!-- ДЕНЬ 1 -->
     <div class="day-card">
-        <div class="day-title">День 1: Фундамент <span class="badge">Завершено ✅</span></div>
+        <div class="day-title">День 1: Фундамент <span class="badge done">Завершено ✅</span></div>
         <ul class="task-list">
-            <li class="task-item"><input type="checkbox" id="d1t1"><span class="task-text"><a href="https://leetcode.com/problems/two-sum/" target="_blank">1. Two Sum</a> (HashMap)</span></li>
-            <li class="task-item"><input type="checkbox" id="d1t2"><span class="task-text"><a href="https://leetcode.com/problems/valid-anagram/" target="_blank">242. Valid Anagram</a> (Массив частот)</span></li>
-            <li class="task-item"><input type="checkbox" id="d1t3"><span class="task-text"><a href="https://leetcode.com/problems/3sum/" target="_blank">15. 3Sum</a> (Two Pointers + дедупликация)</span></li>
-            <li class="task-item"><input type="checkbox" id="d1t4"><span class="task-text"><a href="https://leetcode.com/problems/valid-palindrome/" target="_blank">125. Valid Palindrome</a> (Edge cases, i < j)</span></li>
-            <li class="task-item"><input type="checkbox" id="d1t5"><span class="task-text">Java Core: HashMap (treeify, resize) vs ConcurrentHashMap</span></li>
-            <li class="task-item"><input type="checkbox" id="d1t6"><span class="task-text">JMM: volatile (видимость, happens-before), AtomicLong vs LongAdder</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t1" checked><span class="task-text"><a href="https://leetcode.com/problems/two-sum/" target="_blank">1. Two Sum</a> (HashMap)</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t2" checked><span class="task-text"><a href="https://leetcode.com/problems/valid-anagram/" target="_blank">242. Valid Anagram</a> (Массив частот)</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t3" checked><span class="task-text"><a href="https://leetcode.com/problems/3sum/" target="_blank">15. 3Sum</a> (Two Pointers + дедупликация)</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t4" checked><span class="task-text"><a href="https://leetcode.com/problems/valid-palindrome/" target="_blank">125. Valid Palindrome</a> (Edge cases, i < j)</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t5" checked><span class="task-text">Java Core: HashMap (treeify, resize) vs ConcurrentHashMap</span></li>
+            <li class="task-item"><input type="checkbox" id="d1t6" checked><span class="task-text">JMM: volatile (видимость, happens-before), AtomicLong vs LongAdder</span></li>
         </ul>
     </div>
 
     <!-- ДЕНЬ 2 -->
     <div class="day-card">
-        <div class="day-title">День 2: Алгоритмы + Spring <span class="badge">В процессе 🔄</span></div>
+        <div class="day-title">День 2: Алгоритмы + Spring Core <span class="badge done">Завершено ✅</span></div>
         <ul class="task-list">
-            <li class="task-item"><input type="checkbox" id="d2t1"><span class="task-text"><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank">53. Maximum Subarray</a> (Алгоритм Кадане)</span></li>
-            <li class="task-item"><input type="checkbox" id="d2t2"><span class="task-text"><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">206. Reverse Linked List</a> (С закрытыми глазами)</span></li>
-            <li class="task-item"><input type="checkbox" id="d2t3"><span class="task-text"><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">141. Linked List Cycle</a> (Черепаха и Заяц)</span></li>
-            <li class="task-item"><input type="checkbox" id="d2t4"><span class="task-text"><a href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank">424. Longest Repeating Char</a> (Sliding Window)</span></li>
-            <li class="task-item"><input type="checkbox" id="d2t5"><span class="task-text">Spring: @Transactional (прокси, self-invocation, Propagation)</span></li>
-            <li class="task-item"><input type="checkbox" id="d2t6"><span class="task-text">Spring: Жизненный цикл бина (от BeanDefinition до @PreDestroy)</span></li>
-            <li class="task-item"><input type="checkbox" id="d2t7"><span class="task-text">Java 21: Virtual Threads vs Platform Threads, pinning (ReentrantLock)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t1" checked><span class="task-text"><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank">53. Maximum Subarray</a> (Алгоритм Кадане)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t2" checked><span class="task-text"><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">141. Linked List Cycle</a> (Черепаха и Заяц, O(1) space)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t3" checked><span class="task-text"><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">102. Binary Tree Level Order</a> (BFS через Queue, фиксация размера)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t4" checked><span class="task-text">Spring: @Transactional (прокси, self-invocation, Propagation)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t5" checked><span class="task-text">Spring: Жизненный цикл бина (от BeanDefinition до @PreDestroy)</span></li>
+            <li class="task-item"><input type="checkbox" id="d2t6" checked><span class="task-text">Java 21: Virtual Threads vs Platform Threads, pinning (ReentrantLock)</span></li>
         </ul>
     </div>
 
-    <!-- ДЕНЬ 3 -->
+    <!-- ДЕНЬ 3 (Завтра) -->
     <div class="day-card">
-        <div class="day-title">День 3: БД + Kafka + Микросервисы <span class="badge">Ожидает ⏳</span></div>
+        <div class="day-title">День 3: VK Top Алгоритмы + БД & Kafka <span class="badge">В процессе 🔄</span></div>
         <ul class="task-list">
-            <li class="task-item"><input type="checkbox" id="d3t1"><span class="task-text"><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">102. Binary Tree Level Order</a> (BFS через Queue)</span></li>
-            <li class="task-item"><input type="checkbox" id="d3t2"><span class="task-text"><a href="https://leetcode.com/problems/number-of-islands/" target="_blank">200. Number of Islands</a> (DFS/BFS на матрице)</span></li>
-            <li class="task-item"><input type="checkbox" id="d3t3"><span class="task-text"><a href="https://leetcode.com/problems/rotting-oranges/" target="_blank">994. Rotting Oranges</a> (Multi-source BFS)</span></li>
+            <li class="task-item"><input type="checkbox" id="d3t1"><span class="task-text"><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank">3. Longest Substring Without Repeating</a> (Sliding Window + HashMap)</span></li>
+            <li class="task-item"><input type="checkbox" id="d3t2"><span class="task-text"><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank">33. Search in Rotated Sorted Array</a> (Модифицированный бинарный поиск)</span></li>
+            <li class="task-item"><input type="checkbox" id="d3t3"><span class="task-text"><a href="https://leetcode.com/problems/lru-cache/" target="_blank">146. LRU Cache</a> (HashMap + Doubly Linked List, O(1))</span></li>
             <li class="task-item"><input type="checkbox" id="d3t4"><span class="task-text">PostgreSQL: MVCC, WAL, B-Tree индексы, проблема N+1</span></li>
             <li class="task-item"><input type="checkbox" id="d3t5"><span class="task-text">Kafka: At-least-once + идемпотентный консюмер (ON CONFLICT DO NOTHING)</span></li>
-            <li class="task-item"><input type="checkbox" id="d3t6"><span class="task-text">Микросервисы: Saga (оркестрация vs хореография)</span></li>
+            <li class="task-item"><input type="checkbox" id="d3t6"><span class="task-text">Микросервисы: Saga (оркестрация vs хореография), Circuit Breaker</span></li>
         </ul>
     </div>
 
     <!-- ДЕНЬ 4 -->
     <div class="day-card">
-        <div class="day-title">День 4: System Design + Тестирование <span class="badge">Ожидает ⏳</span></div>
+        <div class="day-title">День 4: System Design + Тестирование <span class="badge pending">Ожидает ⏳</span></div>
         <ul class="task-list">
             <li class="task-item"><input type="checkbox" id="d4t1"><span class="task-text">Mock Contest: 3 случайные задачи за 45 минут с таймером</span></li>
             <li class="task-item"><input type="checkbox" id="d4t2"><span class="task-text">Тестирование: Почему Testcontainers лучше H2? @Mock vs @Spy</span></li>
@@ -237,7 +239,7 @@
 
     <!-- ДЕНЬ 5 -->
     <div class="day-card">
-        <div class="day-title">День 5: Полировка и Soft Skills <span class="badge">Ожидает ⏳</span></div>
+        <div class="day-title">День 5: Полировка и Soft Skills <span class="badge pending">Ожидает ⏳</span></div>
         <ul class="task-list">
             <li class="task-item"><input type="checkbox" id="d5t1"><span class="task-text">Перерешать задачи, которые не получились в Дни 1-4</span></li>
             <li class="task-item"><input type="checkbox" id="d5t2"><span class="task-text">Подготовить STAR-рассказы: Smart Fridge, Concurrency Labs, Indexer</span></li>
@@ -257,7 +259,7 @@
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
-    const STORAGE_KEY = 'vk-midsprint-progress';
+    const STORAGE_KEY = 'vk-midsprint-progress-v2'; // Обновил ключ, чтобы не было конфликтов
 
     function updateProgress() {
         const total = checkboxes.length;
